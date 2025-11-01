@@ -160,7 +160,7 @@ func TestConnectConnAfterSocketClose(t *testing.T) {
 func assertSocketConnsLen(t *testing.T, s *Socket, l int) {
 	mu.Lock()
 	for len(s.conns) != l {
-		s.logger.Info("%v has %v conns (waiting for %v)", s, len(s.conns), l)
+		s.logger.Info("waiting for conns", "socket", s, "current", len(s.conns), "pending", l)
 		mu.Unlock()
 		time.Sleep(time.Second)
 		mu.Lock()
